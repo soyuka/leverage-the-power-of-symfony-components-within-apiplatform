@@ -1,0 +1,48 @@
+@font-face {
+  font-family: 'Adobe-Source-Code-Pro';
+  font-style: normal;
+  font-weight: 400;
+  src:
+    local('Adobe-Source-Code-Pro'),
+    local('Adobe-Source-Code-Pro'),
+    url('../fonts/SourceCodePro-Regular.ttf.woff2') format('woff2'),
+    url('../fonts/SourceCodePro-Regular.ttf.woff') format('woff');
+}
+
+.title-image {
+  display: inline-block;
+  width: auto;
+}
+
+code[class*="language-"], pre[class*="language-"], pre {
+  font-family: 'Adobe-Source-Code-Pro';
+}
+
+svg.api-platform path {
+  fill: #2895a0;
+}
+
+blockquote {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 50px;
+  padding-left: 15px;
+  border-left: 3px solid #ccc;
+}
+
+ul li {
+  line-height: 1.3em;
+}
+
+.fry-pizza {
+  background-image: url('../images/fry-pizza.png');
+  background-size: 300px;
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+}
+
+.pre, pre {
+  display: block;
+  padding: 1.4em;
+  margin: 1em 0;
+}
