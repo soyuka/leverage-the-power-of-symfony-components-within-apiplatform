@@ -51,6 +51,7 @@
   </div>
   <div data-background-image='images/shut-up-and-take-my-money.jpg'>
   </div>
+
   <div>
     <h2>Symfony 4 + Api Platform = 💓</h2>
     <pre><code class="language-bash">composer create-project symfony/skeleton my-api
@@ -69,45 +70,93 @@ composer req api</code></pre>
   </div>
 
   <div data-bodyclass='fry-pizza'>
-    <span class="row">
-      <span class="col">
-        <span class="pre">
-          <em>Workflow</em>
-          <br><br>
-          <em class="bg-color">Instructions</em>
-        </span>
-      </span>
-      <span class="col">
-<pre>
-Order 🡒 Preparation 🡒 Delivery
-
-
-</pre>
-      </span>
-    </span>
+    <table>
+      <tr>
+        <td><em>Workflow</em></td>
+        <td><pre>Order 🡒 Prepare 🡒 Deliver</pre></td>
+      </tr>
+      <tr><td></td><td><pre class="bg-color">  🡓                      🡓</pre></td></tr>
+      <tr>
+        <td><em class="bg-color">Notify</em></td>
+        <td><pre class="bg-color">Kitchen               Customer</pre></td>
+      </tr>
+    </table>
   </div>
 
   <div data-bodyclass='fry-pizza'>
-    <span class="row">
-      <span class="col">
-        <span class="pre">
-          <em>Workflow</em>
-          <br><br>
-          <em>Instructions</em>
-        </span>
-      </span>
-      <span class="col">
-<pre>
-Order 🡒 Preparation 🡒 Delivery
-  🡓                      🡓
-Kitchen               Customer
-</pre>
-      </span>
-    </span>
+    <table>
+      <tr>
+        <td><em>Workflow</em></td>
+        <td><pre>Order 🡒 Prepare 🡒 Deliver</pre></td>
+      </tr>
+      <tr><td></td><td><pre>  🡓                      🡓</pre></td></tr>
+      <tr>
+        <td><em>Notify</em></td>
+        <td><pre>Kitchen               Customer</pre></td>
+      </tr>
+    </table>
   </div>
 
-        <!-- Order 🡒 Preparation 🡒 Delivery -->
-        <!--   🡓                      🡓 -->
-        <!-- Kitchen               Customer -->
+  <div>
+		<h1>Step 1</h1>
+    <pre><code class="language-bash">composer req symfony/workflow symfony/messenger</code></pre>
+  </div>
+
+  <div>
+		<h1>Step 2</h1>
+        <pre style="display:inline-block"><code class="language-yaml">
+places:
+    - order
+    - prepared
+    - delivered
+    - canceled
+                              
+
+
+
+
+
+</code></pre>
+
+        <pre style="display:inline-block"><code class="language-yaml">
+transitions:
+    prepare:
+        from: order
+        to: prepared
+    deliver:
+        from: prepared
+        to: delivered
+    cancel:
+        from: [order, prepared]
+        to: canceled</code>
+        </pre>
+  </div>
+
+	<div data-bodyclass='workflow'>
+	</div>
+
+  <div>
+<pre><code class="language-php">
+final class OrderCreateListener
+{
+    private $bus;
+    public function __construct(MessageBusInterface $bus)
+    {
+        $this->bus = $bus;
+    }
+
+    public function postPersist(Order $order, LifecycleEventArgs $event)
+    {
+        $this->bus->dispatch(new PrepareOrder($order));
+    }
+}
+</code></pre>
+  </div>
+
+  <div>Persister interface</div>
+  <div>Code</div>
+  <div>Controller PATCH /api/orders/{id}/{state}</div>
+  <div>Code apiresource</div>
+  <div>Bonus messenger</div>
 </body>
 </html>

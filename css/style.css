@@ -41,8 +41,18 @@ ul li {
   background-position: 100% 100%;
 }
 
+.workflow {
+  background-image: url('../images/workflow.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
 .pre, pre {
   display: block;
   padding: 1.4em;
   margin: 1em 0;
 }
+
+table pre { padding: 0; margin: 0; }
+table em { padding-right: 15px; }
