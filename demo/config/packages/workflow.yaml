@@ -1,0 +1,30 @@
+framework:
+    workflows:
+        order:
+            type: 'workflow'
+            initial_place: order
+            places:
+                - order
+                - prepared
+                - delivered
+                - canceled
+            transitions:
+                prepare:
+                    from: order
+                    to: prepared
+                deliver:
+                    from: prepared
+                    to: delivered
+                cancel:
+                    from: [order, prepared]
+                    to: canceled
+
+            audit_trail:
+                enabled: true
+
+            marking_store:
+                type: 'single_state'
+                arguments:
+                    - 'status'
+            supports:
+                - App\Entity\Order
