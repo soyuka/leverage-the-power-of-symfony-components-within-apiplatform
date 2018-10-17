@@ -54,7 +54,7 @@
 
   <div>
     <h2>Symfony 4 + Api Platform = 💓</h2>
-    <pre><code class="language-bash">composer create-project symfony/skeleton my-api
+    <pre><code class="language-bash command-line">composer create-project symfony/skeleton my-api
 cd my-api
 composer req api</code></pre>
     <notes>
@@ -100,6 +100,36 @@ composer req api</code></pre>
   <div>
 		<h1>Step 1</h1>
     <pre><code class="language-bash">composer req symfony/workflow symfony/messenger</code></pre>
+  </div>
+
+  <div>
+    <pre><code class="language-php">
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="orders")
+ */
+final class Order
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    public $status;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+}
+
+</code></pre>
+
   </div>
 
   <div>
