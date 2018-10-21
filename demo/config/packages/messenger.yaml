@@ -2,8 +2,11 @@ framework:
     messenger:
         serializer:
                 format: 'jsonld'
+
         transports:
-            amqp: '%env(MESSENGER_TRANSPORT_DSN)%'
+            prepare: '%env(MESSENGER_TRANSPORT_PREPARE)%'
+            deliver: '%env(MESSENGER_TRANSPORT_DELIVER)%'
 
         routing:
-            '*': amqp
+            'App\Message\PrepareOrderMessage': prepare
+            'App\Message\DeliverOrderMessage': deliver

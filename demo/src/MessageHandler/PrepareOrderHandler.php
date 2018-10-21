@@ -2,11 +2,11 @@
 
 namespace App\MessageHandler;
 
-use Psr\Log\LoggerInterface;
-use App\Message\PrepareOrder;
+use App\Message\PrepareOrderMessage;
 use GuzzleHttp\Client;
+use Psr\Log\LoggerInterface;
 
-class PrepareOrderHandler
+final class PrepareOrderHandler
 {
     private $logger;
     private $client;
@@ -17,15 +17,16 @@ class PrepareOrderHandler
         $this->client = $client;
     }
 
-    public function __invoke(PrepareOrder $message)
+    public function __invoke(PrepareOrderMessage $message)
     {
         $this->logger->info(sprintf('Order #%s is being prepared', $message->order->getId()));
 
-        for($i = 0; $i < 2; $i++) {
+        for($i = 0; $i < 4; $i++) {
             sleep(1);
             $this->logger->info('...');
         }
 
         $this->client->patch("/api/orders/{$message->order->getId()}/prepare");
+        $this->logger->info(sprintf('Order #%s prepared', $message->order->getId()));
     }
 }

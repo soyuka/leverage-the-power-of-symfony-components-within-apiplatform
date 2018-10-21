@@ -6,7 +6,7 @@ namespace App\Message;
 
 use App\Entity\Order;
 
-final class PrepareOrder
+final class PrepareOrderMessage
 {
     public $order;
 

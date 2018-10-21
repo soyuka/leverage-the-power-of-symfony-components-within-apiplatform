@@ -6,21 +6,21 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
-use App\Controller\OrderStatusController;
-use App\Controller\OrderPrepareController;
+use App\Controller\OrderTransitionController;
+use App\EventListener\OrderCreateListener;
 
 /**
  * @ApiResource(
- *   itemOperations={"get", "put",
+ *   itemOperations={"get", "put", "delete",
  *     "status"={
  *       "method"="PATCH",
- *       "path"="/orders/{id}/{status}",
- *       "controller"=OrderStatusController::class
+ *       "path"="/orders/{id}/{transition}",
+ *       "controller"=OrderTransitionController::class
  *     }
  *   }
  * )
  * @ORM\Entity
- * @ORM\EntityListeners({"App\EventListener\OrderCreateListener"})
+ * @ORM\EntityListeners({OrderCreateListener::class})
  * @ORM\Table(name="orders")
  */
 final class Order

@@ -12,23 +12,23 @@ use Symfony\Component\Workflow\Registry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * PATCH /orders/{id}/{status}
+ * PATCH /orders/{id}/{transition}
  */
-final class OrderStatusController
+final class OrderTransitionController
 {
     public function __construct(Registry $workflows)
     {
         $this->workflows = $workflows;
     }
 
-    public function __invoke(Order $data, $status): Order
+    public function __invoke(Order $data, $transition): Order
     {
         $workflow = $this->workflows->get($data);
 
         try {
-            $workflow->apply($data, $status);
+            $workflow->apply($data, $transition);
         } catch (TransitionException $exception) {
-            throw new HttpException(400, "Can not transition to $status");
+            throw new HttpException(400, "Can not apply transition.");
         }
 
         return $data;

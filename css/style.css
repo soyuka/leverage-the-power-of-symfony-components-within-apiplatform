@@ -48,6 +48,29 @@ ul li {
   background-position: 50% 50%;
 }
 
+.swagger {
+  background-image: url('../images/swagger_1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.coop {
+  background-image: url('../images/coop-tilleuls.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.coop .slide {
+  margin: 0 auto;
+  background-color: rgba(0,0,0,0.7);
+  color: #fff;
+  text-align: center;
+}
+
+.coop .slide a {
+  color: #fff;
+}
+
 .pre, pre {
   display: block;
   padding: 1.4em;
@@ -56,3 +79,53 @@ ul li {
 
 table pre { padding: 0; margin: 0; }
 table em { padding-right: 15px; }
+
+.full-code {
+  background-color: #1b2b34;
+}
+
+.full-code .slide-container, .full-table .slide-container {
+  width: auto !important;
+}
+
+.full-code .slide, .full-table .slide {
+  padding: 0;
+}
+
+.full-code pre {
+  padding: 0;
+}
+
+.inline {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.full-table table {
+  border-collapse: collapse;
+}
+
+.full-table td, .full-table th {
+  border: 1px solid var(--fg-color);
+  padding: 20px;
+}
+
+.full-table th { text-align:left }
+
+.file {
+  position: absolute;
+  color: #d8dee9;
+  display: block;
+  left: 10px;
+  top: 10px;
+  font-size: 17px;
+}
+
+.grey {
+  color: #ccc;
+}
+
+.emphasis td {
+  border: 2px solid #000;
+}
