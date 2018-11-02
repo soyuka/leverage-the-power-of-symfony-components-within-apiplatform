@@ -98,13 +98,8 @@ composer require api</code></pre>
     </table>
   </div>
 
-  <div data-bodyclass="full-table">
-    <table>
-      <tr><th>🔌 Api</th><th>📨 Message</th><th>🎢 Place</th></tr>
-      <tr><td><pre class="inline">POST /api/orders</pre></td><td>PrepareMessage</td><td>order</td></tr>
-      <tr><td><pre class="inline">PATCH /api/orders/prepare</pre></td><td>DeliverMessage</td><td>prepared</td></tr>
-      <tr><td><pre class="inline">PATCH /api/orders/deliver</pre></td><td></td><td>delivered</td></tr>
-    </table>
+  <div data-bodyclass='diagram'>
+  <img style='height:90vh' src="/images/diagram.svg" alt="diagram" />
   </div>
 
   <div data-bodyclass="full-code">
@@ -142,7 +137,9 @@ final class Order
 </code></pre>
   </div>
 
-  <div data-bodyclass="swagger"></div>
+  <div data-bodyclass="iframe">
+    <iframe border="0" src="http://localhost:8000/" scrolling="no"></iframe>
+  </div>
 
   <div data-bodyclass="full-code">
       <span class="file">config/packages/workflow.yaml</span>
@@ -174,13 +171,8 @@ final class Order
 	<div data-bodyclass='workflow'>
 	</div>
 
-  <div data-bodyclass="full-table">
-    <table>
-      <tr><th>🔌 Api</th><th>📨 Message</th><th>🎢 Place</th></tr>
-      <tr class="emphasis"><td><pre class="inline">POST /api/orders</pre></td><td>PrepareMessage</td><td>order</td></tr>
-      <tr class="grey"><td><pre class="inline">PATCH /api/orders/prepare</pre></td><td>DeliverMessage</td><td>prepared</td></tr>
-      <tr class="grey"><td><pre class="inline">PATCH /api/orders/deliver</pre></td><td></td><td>delivered</td></tr>
-    </table>
+  <div data-bodyclass='diagram'>
+		<img style='height:90vh' src="/images/diagram-1.svg" alt="diagram" />
   </div>
 
   <div data-bodyclass='full-code'>
@@ -228,6 +220,22 @@ final class Order
   </div>
 
   <div data-bodyclass='full-code'>
+    <span class="file">src/MessageHandler/PrepareOrderHandler.php</span>
+    <pre><code class="language-php">final class PrepareOrderHandler
+{
+    public function __invoke(PrepareOrderMessage $message)
+    {
+        /**
+         * Do things
+         * Then update the order status via
+         * PATCH "/api/orders/{$message->order->getId()}/prepare"
+         **/
+    }
+}
+</code></pre>
+  </div>
+
+  <div data-bodyclass='full-code'>
     <span class="file">config/packages/messenger.yaml</span>
     <pre><code class="language-yaml"># MESSENGER_TRANSPORT_PREPARE=amqp://guest:guest@localhost:5672/%2f/prepare
 framework:
@@ -248,13 +256,8 @@ framework:
     </notes>
   </div>
 
-  <div data-bodyclass="full-table">
-    <table>
-      <tr><th>🔌 Api</th><th>📨 Message</th><th>🎢 Place</th></tr>
-      <tr class="grey"><td><pre class="inline">POST /api/orders</pre></td><td>PrepareMessage</td><td>order</td></tr>
-      <tr class="emphasis"><td><pre class="inline">PATCH /api/orders/prepare</pre></td><td>DeliverMessage</td><td>prepared</td></tr>
-      <tr class="grey"><td><pre class="inline">PATCH /api/orders/deliver</pre></td><td></td><td>delivered</td></tr>
-    </table>
+  <div data-bodyclass='diagram'>
+		<img style='height:90vh' src="/images/diagram-2.svg" alt="diagram" />
   </div>
 
   <div data-bodyclass='full-code'>
@@ -308,31 +311,6 @@ final class OrderTransitionController
   </div>
 
   <div data-bodyclass='full-code'>
-    <span class="file">src/MessageHandler/PrepareOrderHandler.php</span>
-    <pre><code class="language-php">final class PrepareOrderHandler
-{
-    public function __invoke(PrepareOrderMessage $message)
-    {
-        /**
-         * Do things
-         * Then update the order status via
-         * PATCH "/api/orders/{$message->order->getId()}/prepare"
-         **/
-    }
-}
-</code></pre>
-  </div>
-
-  <div data-bodyclass="full-table">
-    <table>
-      <tr><th>🔌 Api</th><th>📨 Message</th><th>🎢 Place</th></tr>
-      <tr class="grey"><td><pre class="inline">POST /api/orders</pre></td><td>PrepareMessage</td><td>order</td></tr>
-      <tr class="grey"><td><pre class="inline">PATCH /api/orders/prepare</pre></td><td>DeliverMessage</td><td>prepared</td></tr>
-      <tr class="emphasis"><td><pre class="inline">PATCH /api/orders/deliver</pre></td><td></td><td>delivered</td></tr>
-    </table>
-  </div>
-
-  <div data-bodyclass='full-code'>
     <span class="file">src/EventListener/OrderStateListener.php</span>
 <pre><code class="language-php">final class OrderStateListener
 {
@@ -352,6 +330,24 @@ final class OrderTransitionController
         return array(
             'workflow.order.transition.prepare' => 'onPrepare',
         );
+    }
+}
+</code></pre>
+  </div>
+
+  <div data-bodyclass='diagram'>
+		<img style='height:90vh' src="/images/diagram-3.svg" alt="diagram" />
+  </div>
+
+  <div data-bodyclass='full-code'>
+    <span class="file">src/MessageHandler/PrepareOrderHandler.php</span>
+    <pre><code class="language-php">final class DeliverOrderHandler
+{
+    public function __invoke(DeliverOrderMessage $message)
+    {
+        /**
+         * PATCH "/api/orders/{$message->order->getId()}/deliver"
+         **/
     }
 }
 </code></pre>

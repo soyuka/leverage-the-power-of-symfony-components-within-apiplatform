@@ -48,10 +48,11 @@ ul li {
   background-position: 50% 50%;
 }
 
-.swagger {
-  background-image: url('../images/swagger_1.png');
-  background-repeat: no-repeat;
-  background-size: cover;
+.iframe iframe {
+  width: 90vw;
+  height: 80vh;
+  padding: 0;
+  border: 0;
 }
 
 .coop {
@@ -84,11 +85,11 @@ table em { padding-right: 15px; }
   background-color: #1b2b34;
 }
 
-.full-code .slide-container, .full-table .slide-container {
+.full-code .slide-container, .full-table .slide-container, .iframe .slide-container {
   width: auto !important;
 }
 
-.full-code .slide, .full-table .slide {
+.full-code .slide, .full-table .slide,  .iframe .slide {
   padding: 0;
 }
 

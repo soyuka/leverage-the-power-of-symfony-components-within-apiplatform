@@ -12,14 +12,14 @@
 <!-- place_cce55e4309a753985bdd21919395fdc17daa11e4 -->
 <g id="node1" class="node">
 <title>place_cce55e4309a753985bdd21919395fdc17daa11e4</title>
-<ellipse fill="#add8e6" stroke="#333333" cx="36" cy="-68" rx="36" ry="36"/>
-<text text-anchor="middle" x="36" y="-65.8" font-family="Arial" font-size="9.00" fill="#000000">order</text>
+<ellipse fill="#6A89CC" cx="36" cy="-68" rx="36" ry="36"/>
+<text text-anchor="middle" x="36" y="-65.8" font-family="Arial,sans" font-size="12.00" fill="#ffffff">order</text>
 </g>
 <!-- transition_4197eb0cd81150e5a79910017429267fa67f4ad0 -->
 <g id="node5" class="node">
 <title>transition_4197eb0cd81150e5a79910017429267fa67f4ad0</title>
 <polygon fill="none" stroke="#333333" points="180,-136 108,-136 108,-64 180,-64 180,-136"/>
-<text text-anchor="middle" x="144" y="-97.8" font-family="Arial" font-size="9.00" fill="#000000">prepare</text>
+<text text-anchor="middle" x="144" y="-97.8" font-family="Arial,sans" font-size="9.00" fill="#000000">prepare</text>
 </g>
 <!-- place_cce55e4309a753985bdd21919395fdc17daa11e4&#45;&gt;transition_4197eb0cd81150e5a79910017429267fa67f4ad0 -->
 <g id="edge1" class="edge">
@@ -31,7 +31,7 @@
 <g id="node7" class="node">
 <title>transition_4fd0653c4f2aef3b19a3c145bbdc5f4740715a09</title>
 <polygon fill="none" stroke="#333333" points="396,-72 324,-72 324,0 396,0 396,-72"/>
-<text text-anchor="middle" x="360" y="-33.8" font-family="Arial" font-size="9.00" fill="#000000">cancel</text>
+<text text-anchor="middle" x="360" y="-33.8" font-family="Arial,sans" font-size="9.00" fill="#000000">cancel</text>
 </g>
 <!-- place_cce55e4309a753985bdd21919395fdc17daa11e4&#45;&gt;transition_4fd0653c4f2aef3b19a3c145bbdc5f4740715a09 -->
 <g id="edge5" class="edge">
@@ -43,13 +43,13 @@
 <g id="node2" class="node">
 <title>place_61b5e912059689969f9cf1b685c99a1d89fba594</title>
 <ellipse fill="none" stroke="#333333" cx="252" cy="-100" rx="36" ry="36"/>
-<text text-anchor="middle" x="252" y="-97.8" font-family="Arial" font-size="9.00" fill="#000000">prepared</text>
+<text text-anchor="middle" x="252" y="-97.8" font-family="Arial,sans" font-size="9.00" fill="#000000">prepared</text>
 </g>
 <!-- transition_c3a71b15188728829ec565f4ad9cd36e66dfc593 -->
 <g id="node6" class="node">
 <title>transition_c3a71b15188728829ec565f4ad9cd36e66dfc593</title>
 <polygon fill="none" stroke="#333333" points="396,-162 324,-162 324,-90 396,-90 396,-162"/>
-<text text-anchor="middle" x="360" y="-123.8" font-family="Arial" font-size="9.00" fill="#000000">deliver</text>
+<text text-anchor="middle" x="360" y="-123.8" font-family="Arial,sans" font-size="9.00" fill="#000000">deliver</text>
 </g>
 <!-- place_61b5e912059689969f9cf1b685c99a1d89fba594&#45;&gt;transition_c3a71b15188728829ec565f4ad9cd36e66dfc593 -->
 <g id="edge3" class="edge">
@@ -67,13 +67,13 @@
 <g id="node3" class="node">
 <title>place_f818910a3e181b24a8117b365fcae3816b725add</title>
 <ellipse fill="none" stroke="#333333" cx="468" cy="-126" rx="36" ry="36"/>
-<text text-anchor="middle" x="468" y="-123.8" font-family="Arial" font-size="9.00" fill="#000000">delivered</text>
+<text text-anchor="middle" x="468" y="-123.8" font-family="Arial,sans" font-size="9.00" fill="#000000">delivered</text>
 </g>
 <!-- place_140e7351379dcf91c8a2461ed5cf53e1b9d1414b -->
 <g id="node4" class="node">
 <title>place_140e7351379dcf91c8a2461ed5cf53e1b9d1414b</title>
 <ellipse fill="none" stroke="#333333" cx="468" cy="-36" rx="36" ry="36"/>
-<text text-anchor="middle" x="468" y="-33.8" font-family="Arial" font-size="9.00" fill="#000000">canceled</text>
+<text text-anchor="middle" x="468" y="-33.8" font-family="Arial,sans" font-size="9.00" fill="#000000">canceled</text>
 </g>
 <!-- transition_4197eb0cd81150e5a79910017429267fa67f4ad0&#45;&gt;place_61b5e912059689969f9cf1b685c99a1d89fba594 -->
 <g id="edge2" class="edge">
