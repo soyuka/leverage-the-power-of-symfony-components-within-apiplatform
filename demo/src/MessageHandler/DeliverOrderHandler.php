@@ -26,7 +26,7 @@ final class DeliverOrderHandler
             $this->logger->info('...');
         }
 
-        $this->client->patch("/api/orders/{$message->order->getId()}/deliver");
+        $this->client->patch("/orders/{$message->order->getId()}/deliver");
         $this->logger->info(sprintf('Order #%s delivered', $message->order->getId()));
     }
 }

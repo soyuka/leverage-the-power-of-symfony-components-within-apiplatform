@@ -26,7 +26,7 @@ final class PrepareOrderHandler
             $this->logger->info('...');
         }
 
-        $this->client->patch("/api/orders/{$message->order->getId()}/prepare");
+        $this->client->patch("/orders/{$message->order->getId()}/prepare");
         $this->logger->info(sprintf('Order #%s prepared', $message->order->getId()));
     }
 }

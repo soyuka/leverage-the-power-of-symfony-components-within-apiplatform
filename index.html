@@ -45,9 +45,9 @@
       <li>Benefits from the Symfony ecosystem</li>
     </ul>
     <notes>
-    CRUD => Creating, retrieving, updating and deleting
-    Hypermedia As The Engine Of Application State (HATEOAS) => gives informations whithin the retrieval of resources, for example links between resources.
-    Symfony => Compatible with most existing symfony bundles
+- CRUD: Creating, retrieving, updating and deleting
+- Hypermedia As The Engine Of Application State (HATEOAS): gives informations whithin the retrieval of resources, for example links between resources.
+- Symfony: Compatible with most existing symfony bundles
     </notes>
   </div>
   <div data-background-image='images/shut-up-and-take-my-money.jpg'>
@@ -59,43 +59,15 @@
 cd my-api
 composer require api</code></pre>
     <notes>
-      Api platform has a recipes for symfony flex.
-      Standard edition is based on docker and has everything you need to build production-ready APIs.
-      An admin panel built on React admin leveraging hypermedia capabilities
-      Tools to scaffold/generate react/redux apps in one command.
+- Api platform has a recipes for symfony flex.
+- Standard edition is based on docker and has everything you need to build production-ready APIs.
+- An admin panel built on React admin leveraging hypermedia capabilities
+- Tools to scaffold/generate react/redux apps in one command.
     </notes>
   </div>
 
   <div data-bodyclass='fry-pizza'>
     Let's order pizza 🍕
-  </div>
-
-  <div data-bodyclass='fry-pizza'>
-    <table>
-      <tr>
-        <td><em>Workflow</em></td>
-        <td><pre>Order 🡒 Prepare 🡒 Deliver</pre></td>
-      </tr>
-      <tr><td></td><td><pre class="bg-color">  🡓                   🡓</pre></td></tr>
-      <tr>
-        <td><em class="bg-color">Notify</em></td>
-        <td><pre class="bg-color">Kitchen            Customer</pre></td>
-      </tr>
-    </table>
-  </div>
-
-  <div data-bodyclass='fry-pizza'>
-    <table>
-      <tr>
-        <td><em>Workflow</em></td>
-        <td><pre>Order 🡒 Prepare 🡒 Deliver</pre></td>
-      </tr>
-      <tr><td></td><td><pre>  🡓                   🡓</pre></td></tr>
-      <tr>
-        <td><em>Notify</em></td>
-        <td><pre>Kitchen            Customer</pre></td>
-      </tr>
-    </table>
   </div>
 
   <div data-bodyclass='diagram'>
@@ -105,6 +77,10 @@ composer require api</code></pre>
   <div data-bodyclass="full-code">
     <pre><code class="language-bash command-line">composer require symfony/workflow symfony/messenger</code></pre>
     <notes>1st step require components</notes>
+  </div>
+
+  <div data-bodyclass='diagram'>
+		<img style='height:90vh' src="/images/diagram-1.svg" alt="diagram" />
   </div>
 
   <div data-bodyclass="full-code">
@@ -135,10 +111,29 @@ final class Order
 }
 
 </code></pre>
+    <notes>Then, just create an entity and add a @ApiResource annotation</notes>
   </div>
 
   <div data-bodyclass="iframe">
     <iframe border="0" src="http://localhost:8000/" scrolling="no"></iframe>
+    <notes>
+- Api platform declared default operations!
+- next step, setup the workflow
+    </notes>
+  </div>
+
+  <div data-bodyclass='fry-pizza'>
+    <table>
+      <tr>
+        <td><em>Workflow</em></td>
+        <td><pre>Order 🡒 Prepare 🡒 Deliver</pre></td>
+      </tr>
+      <tr><td></td><td><pre class="bg-color">  🡓                   🡓</pre></td></tr>
+      <tr>
+        <td><em class="bg-color">Notify</em></td>
+        <td><pre class="bg-color">Kitchen            Customer</pre></td>
+      </tr>
+    </table>
   </div>
 
   <div data-bodyclass="full-code">
@@ -160,19 +155,60 @@ final class Order
           from: [order, prepared]
           to: canceled</code>
 </code></pre>
+  <notes>Translated to yaml (in config/workflow.yaml)</notes>
   </div>
 
 <div data-bodyclass='full-code'>
   <pre><code class="language-bash">bin/console workflow:dump order
   |  dot -Tsvg -o order_graph.svg
 </code></pre>
+  <notes>Example integration with symfony: use the workflow:dump command</notes>
 </div>
 
 	<div data-bodyclass='workflow'>
 	</div>
 
+  <div data-bodyclass='fry-pizza'>
+    <table>
+      <tr>
+        <td><em>Workflow</em></td>
+        <td><pre>Order 🡒 Prepare 🡒 Deliver</pre></td>
+      </tr>
+      <tr><td></td><td><pre>  🡓                   🡓</pre></td></tr>
+      <tr>
+        <td><em>Notify</em></td>
+        <td><pre>Kitchen            Customer</pre></td>
+      </tr>
+    </table>
+    <notes>Now for the messages we want to send messages to different parties.</notes>
+  </div>
+
+  <div data-bodyclass='full-code'>
+    <span class="file">config/packages/messenger.yaml</span>
+    <pre><code class="language-yaml"># MESSENGER_TRANSPORT_PREPARE=amqp://guest:guest@localhost:5672/%2f/prepare
+framework:
+    messenger:
+        serializer:
+                format: 'jsonld'
+
+        transports:
+            prepare: '%env(MESSENGER_TRANSPORT_PREPARE)%'
+            deliver: '%env(MESSENGER_TRANSPORT_DELIVER)%'
+
+        routing:
+            'App\Message\PrepareOrderMessage': prepare
+            'App\Message\DeliverOrderMessage': deliver
+</code></pre>
+    <notes>
+- configuring 2 messages with their own transports
+- now only amqp
+- Redis (symfony pr)
+    </notes>
+  </div>
+
   <div data-bodyclass='diagram'>
-		<img style='height:90vh' src="/images/diagram-1.svg" alt="diagram" />
+		<img style='height:90vh' src="/images/diagram-2.svg" alt="diagram" />
+    <notes>step 2, when order gets created : dispatch prepare message</notes>
   </div>
 
   <div data-bodyclass='full-code'>
@@ -204,6 +240,7 @@ final class Order
     }
 }
 </code></pre>
+    <notes>... where message looks like: nextslide</notes>
   </div>
 
   <div data-bodyclass='full-code'>
@@ -233,31 +270,12 @@ final class Order
     }
 }
 </code></pre>
-  </div>
-
-  <div data-bodyclass='full-code'>
-    <span class="file">config/packages/messenger.yaml</span>
-    <pre><code class="language-yaml"># MESSENGER_TRANSPORT_PREPARE=amqp://guest:guest@localhost:5672/%2f/prepare
-framework:
-    messenger:
-        serializer:
-                format: 'jsonld'
-
-        transports:
-            prepare: '%env(MESSENGER_TRANSPORT_PREPARE)%'
-            deliver: '%env(MESSENGER_TRANSPORT_DELIVER)%'
-
-        routing:
-            'App\Message\PrepareOrderMessage': prepare
-            'App\Message\DeliverOrderMessage': deliver
-</code></pre>
-    <notes>
-      Redis soon
-    </notes>
+    <notes>the message handler will call PATCH /api/orders/x/prepare after processing to get to the next step</notes>
   </div>
 
   <div data-bodyclass='diagram'>
-		<img style='height:90vh' src="/images/diagram-2.svg" alt="diagram" />
+		<img style='height:90vh' src="/images/diagram-3.svg" alt="diagram" />
+    <notes>For this step create controller that calls transitions on the workflow</notes>
   </div>
 
   <div data-bodyclass='full-code'>
@@ -280,6 +298,7 @@ final class Order
 {
 }
 </code></pre>
+    <notes>And the controller goes... nextslide</notes>
   </div>
 
   <div data-bodyclass='full-code'>
@@ -310,6 +329,11 @@ final class OrderTransitionController
 </code></pre>
   </div>
 
+  <div data-bodyclass='diagram'>
+		<img style='height:90vh' src="/images/diagram-4.svg" alt="diagram" />
+    <notes>Use workflow event listener to subscribe on the prepare transition and dispatch a deliver message</notes>
+  </div>
+
   <div data-bodyclass='full-code'>
     <span class="file">src/EventListener/OrderStateListener.php</span>
 <pre><code class="language-php">final class OrderStateListener
@@ -335,10 +359,6 @@ final class OrderTransitionController
 </code></pre>
   </div>
 
-  <div data-bodyclass='diagram'>
-		<img style='height:90vh' src="/images/diagram-3.svg" alt="diagram" />
-  </div>
-
   <div data-bodyclass='full-code'>
     <span class="file">src/MessageHandler/PrepareOrderHandler.php</span>
     <pre><code class="language-php">final class DeliverOrderHandler
@@ -351,6 +371,11 @@ final class OrderTransitionController
     }
 }
 </code></pre>
+    <notes>The deliver order handler handles the delivery then calls PATCH /api/orders/x and fullfills our step 5</notes>
+  </div>
+
+  <div data-bodyclass='diagram'>
+		<img style='height:90vh' src="/images/diagram-5.svg" alt="diagram" />
   </div>
 
   <div>DEMO</div>
