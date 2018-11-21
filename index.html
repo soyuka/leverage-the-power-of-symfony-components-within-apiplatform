@@ -37,12 +37,12 @@
       <li>Data validation, pagination, filtering, sorting</li>
       <li>Hypermedia & content negotation</li>
       <li>Swagger/OpenAPI Documentation</li>
+      <li><strong>Benefits from the Symfony ecosystem</strong></li>
       <li>GraphQL</li>
       <li>Authentication (Basic HTTP, JWT, OAuth)</li>
       <li>CORS headers</li>
       <li>Security checks and headers</li>
       <li>Invalidation based HTTP caching</li>
-      <li>Benefits from the Symfony ecosystem</li>
     </ul>
     <notes>
 - CRUD: Creating, retrieving, updating and deleting
@@ -50,6 +50,20 @@
 - Symfony: Compatible with most existing symfony bundles
     </notes>
   </div>
+
+  <div>
+    <ul>
+      <li>Production ready</li>
+      <li>Admin panel</li>
+      <li>Code generators</li>
+    </ul>
+    <notes>
+- Standard edition is based on docker and has everything you need to build production-ready APIs.
+- An admin panel built on React admin leveraging hypermedia capabilities
+- Tools to scaffold/generate react/redux apps in one command.
+    </notes>
+  </div>
+
   <div data-background-image='images/shut-up-and-take-my-money.jpg'>
   </div>
 
@@ -60,18 +74,28 @@ cd my-api
 composer require api</code></pre>
     <notes>
 - Api platform has a recipes for symfony flex.
-- Standard edition is based on docker and has everything you need to build production-ready APIs.
-- An admin panel built on React admin leveraging hypermedia capabilities
-- Tools to scaffold/generate react/redux apps in one command.
     </notes>
   </div>
 
   <div data-bodyclass='fry-pizza'>
     Let's order pizza 🍕
+    <notes>
+    1. Client order
+    2. Prepare
+    3. Deliver
+    These 3 steps can be decomposed to the following diagram
+    </notes>
   </div>
 
   <div data-bodyclass='diagram'>
   <img style='height:90vh' src="/images/diagram.svg" alt="diagram" />
+  <notes>
+ - Left client orders
+ - bottom api sends a message "prepare" kitchen,
+ - pizza prepared kitchen updates the order (ie patch)
+ - on the right, we send a "deliver" message
+ - pizza delivered in 5
+  </notes>
   </div>
 
   <div data-bodyclass="full-code">
@@ -166,6 +190,7 @@ final class Order
 </div>
 
 	<div data-bodyclass='workflow'>
+    <notes>Then we want to setup messages (next slide)</notes>
 	</div>
 
   <div data-bodyclass='fry-pizza'>
@@ -180,7 +205,9 @@ final class Order
         <td><pre>Kitchen            Customer</pre></td>
       </tr>
     </table>
-    <notes>Now for the messages we want to send messages to different parties.</notes>
+    <notes>Now for the messages we want to send messages to different parties.
+    next step configure messenger
+    </notes>
   </div>
 
   <div data-bodyclass='full-code'>
@@ -385,6 +412,12 @@ final class OrderTransitionController
 
 <pre><code class="language-bash command-line">git clone git@github:soyuka/
 leverage-the-power-of-symfony-components-within-apiplatform</code></pre>
+
+<span style="display:block;height:60px;">
+<img src="images/tilleuls.png" style="width:60px;display: inline-block;vertical-align: middle;" />
+<img src="images/api-platform-logo.svg"  style="width:50px;display: inline-block;vertical-align: middle;" /></span>
+<img src="images/sfcon_lisbon2018.png" style="width:100px;display: inline-block;vertical-align: middle;" />
+</span>
 </div>
 </body>
 </html>
