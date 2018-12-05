@@ -4,9 +4,9 @@ framework:
                 format: 'jsonld'
 
         transports:
-            prepare: '%env(MESSENGER_TRANSPORT_PREPARE)%'
-            deliver: '%env(MESSENGER_TRANSPORT_DELIVER)%'
+            kitchen: '%env(MESSENGER_TRANSPORT_KITCHEN)%'
+            delivery_truck: '%env(MESSENGER_TRANSPORT_DELIVERY_TRUCK)%'
 
         routing:
-            'App\Message\PrepareOrderMessage': prepare
-            'App\Message\DeliverOrderMessage': deliver
+            'App\Message\PrepareOrderMessage': kitchen
+            'App\Message\DeliverOrderMessage': delivery_truck

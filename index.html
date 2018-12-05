@@ -8,7 +8,7 @@
   <link href='css/prism.css' rel='stylesheet' />
   <link href='css/gridly.css' rel='stylesheet' />
   <link href='css/style.css' rel='stylesheet' />
-  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.1/css/all.css' integrity='sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz' crossorigin='anonymous'>
+  <link rel='stylesheet' href='css/fontawesome.css'>
   <script src='js/big.js'></script>
   <script src='js/prism.js'></script>
 </head>
@@ -31,18 +31,15 @@
     <br></br>
     <br></br>
   </div>
-  <div>
-    <ul>
-      <li>CRUD resources management</li>
-      <li>Data validation, pagination, filtering, sorting</li>
-      <li>Hypermedia & content negotation</li>
-      <li>Swagger/OpenAPI Documentation</li>
-      <li><strong>Benefits from the Symfony ecosystem</strong></li>
-      <li>GraphQL</li>
-      <li>Authentication (Basic HTTP, JWT, OAuth)</li>
-      <li>CORS headers</li>
-      <li>Security checks and headers</li>
-      <li>Invalidation based HTTP caching</li>
+  <div data-bodyclass='toolbox'></div>
+  <div data-bodyclass='api-world'>
+    <ul class="cloud">
+      <li>CRUD</li>
+      <li>Validation</li>
+      <li>Filtering</li>
+      <li>Sorting</li>
+      <li>Pagination</li>
+      <li>Authentication</li>
     </ul>
     <notes>
 - CRUD: Creating, retrieving, updating and deleting
@@ -50,12 +47,21 @@
 - Symfony: Compatible with most existing symfony bundles
     </notes>
   </div>
-
-  <div>
-    <ul>
-      <li>Production ready</li>
-      <li>Admin panel</li>
-      <li>Code generators</li>
+  <div data-bodyclass='api-world'>
+    <ul class="cloud">
+      <li><i class="fas fa-shield-alt"></i>Security</li>
+      <li><br>JSON-LD</li>
+      <li>Hypermedia</li>
+      <li>GraphQL</li>
+      <li>Cache</li>
+    </ul>
+  </div>
+  <div data-bodyclass='api-world'>
+    <ul class="cloud">
+      <li>Open API</li>
+      <li><br>Admin panel</li>
+      <li><br><i class="fab fa-react"></i><i class="fab fa-angular"></i> Generators</li>
+      <li><br>Production ready <i class="fab fa-docker"></i></li>
     </ul>
     <notes>
 - Standard edition is based on docker and has everything you need to build production-ready APIs.
@@ -63,8 +69,59 @@
 - Tools to scaffold/generate react/redux apps in one command.
     </notes>
   </div>
+  <div data-bodyclass='white-bg'>
+    <img src='images/github.png'>
+    <img src='images/github2.png'>
+  </div>
+  <div>
+    Benefits from the Symfony ecosystem
+    <notes>
+    - compatible with any symfony/symfony-based components
+    -  1 067 792 installs of core
+    </notes>
+  </div>
 
   <div data-background-image='images/shut-up-and-take-my-money.jpg'>
+  </div>
+
+  <div data-bodyclass='fry-pizza'>
+    Let's order pizza 🍕
+    <notes>
+    1. Client order
+    2. Prepare
+    3. Deliver
+    </notes>
+  </div>
+
+  <div data-bodyclass='fry-pizza'>
+    <table>
+      <tr>
+        <td><em>Workflow</em></td>
+        <td><pre>Order 🡒 Prepare 🡒 Deliver</pre></td>
+      </tr>
+      <tr><td></td><td><pre class="bg-color">      🡓          🡓</pre></td></tr>
+      <tr>
+        <td><em class="bg-color">Notify</em></td>
+        <td><pre class="bg-color">    Kitchen      </pre></td>
+      </tr>
+    </table>
+  </div>
+
+  <div data-bodyclass='fry-pizza'>
+    <table>
+      <tr>
+        <td><em>Workflow</em></td>
+        <td><pre>Order 🡒 Prepare 🡒 Deliver</pre></td>
+      </tr>
+      <tr><td></td><td><pre>      🡓          🡓</pre></td></tr>
+      <tr>
+        <td><em>Notify</em></td>
+        <td><pre>    Kitchen      🚚</pre></td>
+      </tr>
+    </table>
+    <notes>Now for the messages we want to send messages to different parties.
+    next step configure messenger
+    </notes>
   </div>
 
   <div>
@@ -74,17 +131,51 @@ cd my-api
 composer require api</code></pre>
     <notes>
 - Api platform has a recipes for symfony flex.
+- https://symfony.sh/
+- doctrine + cors + validator + symfony/security
     </notes>
   </div>
 
-  <div data-bodyclass='fry-pizza'>
-    Let's order pizza 🍕
-    <notes>
-    1. Client order
-    2. Prepare
-    3. Deliver
-    These 3 steps can be decomposed to the following diagram
+  <div>
+    <br></br>
+    <blockquote>
+  The Workflow component provides tools for managing a workflow or finite state machine.
+      <small><footer>
+        —
+        <cite>https://symfony.com/doc/current/components/workflow.html</cite>
+      </footer></small>
+    </blockquote>
+    <br></br>
+    <br></br>
+  </div>
+
+  <div data-bodyclass="full-code">
+    <pre><code class="language-bash command-line">composer require symfony/workflow</code></pre>
+    <notes>1st step require components
+    thanks to receipes you have nothing else to do, just change the configuration
     </notes>
+  </div>
+
+  <div>
+    <br></br>
+    <blockquote>
+ The Messenger component helps applications send and receive messages to/from other applications or via message queues.
+      <small><footer>
+        —
+        <cite>https://symfony.com/doc/current/components/messenger.html</cite>
+      </footer></small>
+    </blockquote>
+    <br></br>
+    <br></br>
+  </div>
+
+  <div>
+    <img src='images/messenger.png'>
+  </div>
+
+  <div data-bodyclass="full-code">
+    <pre><code class="language-bash command-line">composer require symfony/messenger</code></pre>
+    <notes>1st step require components</notes>
   </div>
 
   <div data-bodyclass='diagram'>
@@ -98,9 +189,13 @@ composer require api</code></pre>
   </notes>
   </div>
 
-  <div data-bodyclass="full-code">
-    <pre><code class="language-bash command-line">composer require symfony/workflow symfony/messenger</code></pre>
-    <notes>1st step require components</notes>
+  <div>
+    <ul class="inline-list">
+      <li><img style='width:160px' src='images/symfony.png'></li>
+      <li><img style='width:180px' src='images/api-platform-fusee.svg'></li>
+      <li><img style='width:200px' src='images/rabbitmq.png'></li>
+      <li><img style='width:300px' src='images/sqlite.png'></li>
+    </ul>
   </div>
 
   <div data-bodyclass='diagram'>
@@ -152,13 +247,14 @@ final class Order
         <td><em>Workflow</em></td>
         <td><pre>Order 🡒 Prepare 🡒 Deliver</pre></td>
       </tr>
-      <tr><td></td><td><pre class="bg-color">  🡓                   🡓</pre></td></tr>
+      <tr><td></td><td><pre class="bg-color">      🡓          🡓</pre></td></tr>
       <tr>
         <td><em class="bg-color">Notify</em></td>
-        <td><pre class="bg-color">Kitchen            Customer</pre></td>
+        <td><pre class="bg-color">    Kitchen      </pre></td>
       </tr>
     </table>
   </div>
+
 
   <div data-bodyclass="full-code">
       <span class="file">config/packages/workflow.yaml</span>
@@ -199,10 +295,10 @@ final class Order
         <td><em>Workflow</em></td>
         <td><pre>Order 🡒 Prepare 🡒 Deliver</pre></td>
       </tr>
-      <tr><td></td><td><pre>  🡓                   🡓</pre></td></tr>
+      <tr><td></td><td><pre>      🡓          🡓</pre></td></tr>
       <tr>
         <td><em>Notify</em></td>
-        <td><pre>Kitchen            Customer</pre></td>
+        <td><pre>    Kitchen      🚚</pre></td>
       </tr>
     </table>
     <notes>Now for the messages we want to send messages to different parties.
@@ -210,21 +306,22 @@ final class Order
     </notes>
   </div>
 
+
   <div data-bodyclass='full-code'>
     <span class="file">config/packages/messenger.yaml</span>
-    <pre><code class="language-yaml"># MESSENGER_TRANSPORT_PREPARE=amqp://guest:guest@localhost:5672/%2f/prepare
+    <pre><code class="language-yaml"># MESSENGER_TRANSPORT_KITCHEN=amqp://guest:guest@localhost:5672/%2f/kitchen
 framework:
     messenger:
         serializer:
                 format: 'jsonld'
 
         transports:
-            prepare: '%env(MESSENGER_TRANSPORT_PREPARE)%'
-            deliver: '%env(MESSENGER_TRANSPORT_DELIVER)%'
+            kitchen: '%env(MESSENGER_TRANSPORT_KITCHEN)%'
+            delivery_truck: '%env(MESSENGER_TRANSPORT_DELIVERY_TRUCK)%'
 
         routing:
-            'App\Message\PrepareOrderMessage': prepare
-            'App\Message\DeliverOrderMessage': deliver
+            'App\Message\PrepareOrderMessage': kitchen
+            'App\Message\DeliverOrderMessage': delivery_truck
 </code></pre>
     <notes>
 - configuring 2 messages with their own transports
@@ -241,6 +338,7 @@ framework:
   <div data-bodyclass='full-code'>
     <span class="file">src/Entity/Order.php</span>
     <pre><code class="language-php">/**
+ * @ApiResource
  * @ORM\Entity
  * @ORM\EntityListeners({OrderCreateListener::class})
  * @ORM\Table(name="orders")
@@ -406,6 +504,17 @@ final class OrderTransitionController
   </div>
 
   <div>DEMO</div>
+
+  <div data-bodyclass='further-questions'>
+  </div>
+
+  <div data-bodyclass='api-computer'>
+    <ul>
+      <li>Messenger on redis</li>
+      <li>Mercure</li>
+      <li>MongoDB</li>
+      <li>Elasticsearch read support</li>
+  </div>
 
   <div data-bodyclass='coop'>
     <i class="fab fa-github"></i> <a target="_blank" href="https://github.com/soyuka">https://github.com/soyuka</a> | <i class="fab fa-twitter"></i> <a target="_blank" href="https://twitter.com/s0yuka">https://twitter.com/s0yuka</a><br>

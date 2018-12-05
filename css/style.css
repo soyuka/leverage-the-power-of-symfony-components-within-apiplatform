@@ -61,6 +61,34 @@ ul li {
   background-size: cover;
 }
 
+.toolbox {
+  background-image: url('../images/toolbox.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.further-questions {
+  background-image: url('../images/further_questions.gif');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50% 0;
+}
+
+.api-world {
+  background-image: url('../images/api-world.svg');
+  background-repeat: no-repeat;
+  background-size: 200px;
+  background-position: 100% 0;
+}
+
+.api-computer {
+  background-image: url('../images/api-platform-computer.svg');
+  background-repeat: no-repeat;
+  background-size: 300px;
+  background-position: 100% 0;
+}
+
+
 .nowrap {
   white-space: nowrap;
 }
@@ -146,4 +174,32 @@ a:hover {
   color: black;
   text-decoration: none;
   border-bottom: 5px solid black;
+}
+
+.cloud {
+    display: inline;
+    list-style-type: none;
+    width: 400px;
+}
+.cloud li {
+    list-style: none;
+    display: inline;
+}
+
+.cloud li:nth-of-type(3n + 1) {
+    font-size: 1.25em;
+}
+.cloud li:nth-of-type(4n+3) {
+    font-size: 1.5em;
+}
+.cloud li:nth-of-type(5n - 3) {
+    font-size: 1em;
+}
+
+.white-bg {
+  background: #fff;
+}
+
+ul.inline-list li {
+  display: inline-block;
 }
