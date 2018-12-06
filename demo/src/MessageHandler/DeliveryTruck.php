@@ -2,11 +2,12 @@
 
 namespace App\MessageHandler;
 
-use App\Message\PrepareOrderMessage;
+use App\Message\PrepareOrder;
 use GuzzleHttp\Client;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Messenger\MessageHandlerInterface;
 
-final class PrepareOrderHandler
+final class DeliveryTruck
 {
     private $logger;
     private $client;
@@ -17,7 +18,7 @@ final class PrepareOrderHandler
         $this->client = $client;
     }
 
-    public function __invoke(PrepareOrderMessage $message)
+    public function __invoke(PrepareOrder $message)
     {
         $this->logger->info(sprintf('Order #%s is being prepared', $message->order->getId()));
 

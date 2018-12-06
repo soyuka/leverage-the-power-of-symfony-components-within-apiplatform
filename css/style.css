@@ -93,18 +93,6 @@ ul li {
   white-space: nowrap;
 }
 
-.coop .slide {
-  margin: 0 auto;
-  background-color: rgba(0,0,0,0.7);
-  color: #fff;
-  text-align: center;
-  padding-bottom: 0;
-}
-
-.coop .slide a {
-  color: #fff;
-}
-
 .pre, pre {
   display: block;
   padding: 1.4em;
@@ -202,4 +190,25 @@ a:hover {
 
 ul.inline-list li {
   display: inline-block;
+  vertical-align: middle;
+}
+
+.avatar {
+  border-radius: 3px;
+  display: inline-block;
+  line-height: 1;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.image-container img {
+  vertical-align: middle;
+}
+
+.messenger {
+  background-color: #fff;
+  background-image: url('../images/messenger.png');
+  background-size: 1024px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
 }

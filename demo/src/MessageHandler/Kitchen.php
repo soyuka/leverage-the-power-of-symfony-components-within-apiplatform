@@ -2,11 +2,12 @@
 
 namespace App\MessageHandler;
 
-use App\Message\DeliverOrderMessage;
+use App\Message\DeliverOrder;
 use GuzzleHttp\Client;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Messenger\MessageHandlerInterface;
 
-final class DeliverOrderHandler
+final class Kitchen implements MessageHandlerInterface
 {
     private $logger;
     private $client;
@@ -17,7 +18,7 @@ final class DeliverOrderHandler
         $this->client = $client;
     }
 
-    public function __invoke(DeliverOrderMessage $message)
+    public function __invoke(DeliverOrder $message)
     {
         $this->logger->info(sprintf('Order #%s is being delivered', $message->order->getId()));
 

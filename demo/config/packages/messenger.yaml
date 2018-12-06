@@ -8,5 +8,5 @@ framework:
             delivery_truck: '%env(MESSENGER_TRANSPORT_DELIVERY_TRUCK)%'
 
         routing:
-            'App\Message\PrepareOrderMessage': kitchen
-            'App\Message\DeliverOrderMessage': delivery_truck
+            'App\Message\PrepareOrder': kitchen
+            'App\Message\DeliverOrder': delivery_truck
